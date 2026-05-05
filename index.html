@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scam Detector</title>
+</head>
+<body>
+
+  <h2>Scam Detector</h2>
+
+  <p>Paste a message below and check if it is a scam:</p>
+
+  <textarea id="input" rows="6" cols="40"></textarea>
+
+  <br><br>
+
+  <button onclick="analyze()">Check</button>
+
+  <p id="result"></p>
+
+  <script>
+    function analyze() {
+      let text = document.getElementById("input").value.toLowerCase();
+      let score = 0;
+
+      if (text.includes("oil rig")) score += 50;
+      if (text.includes("deployed")) score += 50;
+      if (text.includes("send money")) score += 40;
+      if (text.includes("bitcoin")) score += 40;
+      if (text.includes("urgent")) score += 20;
+
+      if (score >= 60) {
+        document.getElementById("result").innerText = "⚠️ Very High Risk";
+      } else if (score >= 30) {
+        document.getElementById("result").innerText = "⚠️ Medium Risk";
+      } else {
+        document.getElementById("result").innerText = "✅ Low Risk";
+      }
+    }
+  </script>
+
+</body>
+</html>
